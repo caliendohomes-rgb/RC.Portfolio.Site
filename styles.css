@@ -981,6 +981,37 @@ details[open] > summary .icon-plus {
   font-size: 13px;
   line-height: 1.85;
 }
+.onboarding-bridge {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 90px;
+  margin-top: 55px;
+  padding-top: 28px;
+  border-top: 1px solid var(--dark-line);
+}
+.onboarding-bridge h3 {
+  font-size: 24px;
+  margin-top: 17px;
+}
+.onboarding-copy p {
+  max-width: 610px;
+  font-size: 13px;
+  line-height: 1.9;
+}
+.onboarding-signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 25px;
+  list-style: none;
+  margin-top: 18px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 10px;
+}
+.onboarding-signals li::before {
+  content: "/";
+  margin-right: 8px;
+}
 .operating-close {
   display: flex;
   justify-content: space-between;
@@ -1508,6 +1539,9 @@ details[open] > summary .icon-plus {
     align-items: start;
     gap: 12px;
   }
+  .onboarding-bridge {
+    gap: 40px;
+  }
   .career-layout {
     grid-template-columns: 0.8fr 1.6fr;
     gap: 42px;
@@ -1871,6 +1905,23 @@ details[open] > summary .icon-plus {
   .operating-close {
     margin-top: 30px;
     padding-top: 23px;
+  }
+  .onboarding-bridge {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 34px;
+    padding-top: 25px;
+  }
+  .onboarding-bridge h3 {
+    font-size: 22px;
+    margin-top: 12px;
+  }
+  .onboarding-copy p {
+    font-size: 12px;
+  }
+  .onboarding-signals {
+    gap: 8px 18px;
+    font-size: 9px;
   }
   .operating-close p {
     font-size: 12px;
