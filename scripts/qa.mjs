@@ -189,10 +189,22 @@ try {
     (await page.locator(".onboarding-bridge h3").textContent()).includes(
       "Help new practices take hold",
     ) &&
+      (await page.locator(".onboarding-bridge").textContent())
+        .replace(/\s+/g, " ")
+        .includes("1,500+ engineers and product leaders") &&
       (await page.locator(".onboarding-bridge").textContent()).includes(
-        "1,500+ engineers and product leaders",
+        "automated Jira workflow",
       ),
-    "Engineering onboarding context is present in the operating model",
+    "Engineering onboarding context and Jira workflow are present",
+  );
+  check(
+    (await page.locator("#ai .case-details").textContent()).includes(
+      "no established velocity baseline",
+    ) &&
+      (await page.locator("#ai .case-details").textContent()).includes(
+        "Rovo",
+      ),
+    "AI case study explains the measurement approach",
   );
   check(
     (await page.locator(".capability-matrix").textContent()).includes(
