@@ -94,6 +94,21 @@ try {
         el.checkVisibility({ checkVisibilityCSS: true }) &&
         !el.closest("details:not([open]) > :not(summary)");
       const ids = [...document.querySelectorAll("[id]")].map((el) => el.id);
+      const smallText = [];
+      const textNodes = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+      );
+      while (textNodes.nextNode()) {
+        const value = textNodes.currentNode.textContent.trim();
+        const element = textNodes.currentNode.parentElement;
+        if (
+          value.length >= 3 &&
+          visible(element) &&
+          parseFloat(getComputedStyle(element).fontSize) < 12
+        )
+          smallText.push(value.slice(0, 50));
+      }
       return {
         overflow: document.documentElement.scrollWidth > innerWidth,
         overflowingElements: [...document.querySelectorAll("main *")]
@@ -117,6 +132,26 @@ try {
         hasMotion: [...document.querySelectorAll("*")].some(
           (el) => getComputedStyle(el).animationName !== "none",
         ),
+        smallText,
+        readingSizes: [
+          ".hero-description",
+          ".proof-metrics p",
+          ".heading-row > p",
+          ".case-lead",
+          ".case-facts dd",
+          ".detail-grid p",
+          ".operating-flow p",
+          ".onboarding-copy p",
+          ".career-role.current > p:not(.former-title)",
+          ".capability-matrix dd",
+          ".resume-copy > p:not(.eyebrow)",
+          ".contact-layout p:not(.contact-location)",
+        ].map((selector) => ({
+          selector,
+          size: parseFloat(
+            getComputedStyle(document.querySelector(selector)).fontSize,
+          ),
+        })),
       };
     });
     check(
@@ -137,6 +172,14 @@ try {
     check(
       layout.heroBottom < height,
       `${width}px: next section visible in first viewport`,
+    );
+    check(
+      layout.readingSizes.every(({ size }) => size >= 14),
+      `${width}px: primary reading text is at least 14px`,
+    );
+    check(
+      !layout.smallText.length,
+      `${width}px: visible supporting text is at least 12px`,
     );
     await page.screenshot({ path: path.join(output, `${width}-overview.png`) });
     // Bring lazy images and every region into view before the full-page capture.
@@ -261,6 +304,22 @@ try {
     !(await page.locator(".site-nav").isVisible()),
     "Desktop-to-mobile resize keeps menu closed",
   );
+  await page.setViewportSize({ width: 768, height: 900 });
+  await toggle.click();
+  check(
+    (await toggle.getAttribute("aria-expanded")) === "true" &&
+      (await page.locator(".site-nav a:visible").count()) === 7 &&
+      (await page.locator(".nav-icon-close").isVisible()) &&
+      (await page.locator(".nav-icon-close").evaluate((el) => el.naturalWidth > 0)),
+    "Tablet menu exposes all sections and a visible close icon",
+  );
+  await page.locator('.site-nav a[href="#tools"]').click();
+  check(
+    (await toggle.getAttribute("aria-expanded")) === "false" &&
+      (await page.locator("#tools").evaluate((el) => el === document.activeElement)),
+    "Tablet capabilities link closes menu and moves focus",
+  );
+  await page.setViewportSize({ width: 375, height: 812 });
   const summary = page.locator("#portfolio summary");
   await summary.focus();
   await page.keyboard.press("Enter");
