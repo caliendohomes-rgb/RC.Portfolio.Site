@@ -1,6 +1,6 @@
 (() => {
   const motion = matchMedia("(prefers-reduced-motion: reduce)");
-  const mobile = matchMedia("(max-width: 639px)");
+  const mobile = matchMedia("(max-width: 899px)");
   const header = document.querySelector(".site-header");
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".site-nav");
