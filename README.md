@@ -73,3 +73,5 @@ The existing Git connection deploys `main`; use a feature branch and pull reques
 ## Experience design
 
 Overview and proof lead into three transformation narratives, a release record, an operating model, career progression, supporting tools, resume, and recruiting contact. Native disclosures provide depth without hiding the core evidence. The resume is the primary action; consulting sits beneath career details. No automatic counters, continuous particles, fake charts, custom cursors, or heavyweight animation libraries.
+
+The operating model includes a compact engineering onboarding and enablement example. It connects verified global orientation work with engineering AI adoption while keeping technical program leadership as the primary positioning. The downloadable PDF remains the general portfolio resume; role-specific application documents are not published on the site.

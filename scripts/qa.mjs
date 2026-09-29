@@ -185,6 +185,21 @@ try {
   });
   const page = await context.newPage();
   await page.goto(base);
+  check(
+    (await page.locator(".onboarding-bridge h3").textContent()).includes(
+      "Help new practices take hold",
+    ) &&
+      (await page.locator(".onboarding-bridge").textContent()).includes(
+        "1,500+ engineers and product leaders",
+      ),
+    "Engineering onboarding context is present in the operating model",
+  );
+  check(
+    (await page.locator(".capability-matrix").textContent()).includes(
+      "Onboarding systems",
+    ),
+    "Onboarding systems appears as a supporting capability",
+  );
   await page.keyboard.press("Tab");
   check(
     await page

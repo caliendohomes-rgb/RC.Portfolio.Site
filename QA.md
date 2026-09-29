@@ -37,3 +37,7 @@ Richard explicitly authorized updating the older PDF using approved facts. The r
 Browser automation used current Microsoft Edge/Chromium on Windows. Physical iOS/Safari, Android, and screen-reader sessions were not run. Automated accessibility scores are not a complete conformance certification. The PDF is searchable but not a tagged PDF/UA document; the website supplies semantic HTML content.
 
 Machine-readable results, screenshots, and the Lighthouse HTML report are generated in the ignored `qa-results/` folder. See README for commands. No unresolved content decisions or implementation blockers remain.
+
+## Engineering onboarding update (2026-09-29)
+
+Added a supporting engineering onboarding and enablement example to the operating model, with matching career and capability context. The public resume remains the general two-page version; the role-specific application PDFs were used for source verification only and were not published. The updated build passed 89/89 browser checks across nine viewport sizes, including axe WCAG A/AA checks. The new section was visually inspected at 375px and 1440px. Mobile Lighthouse scored 99 performance and 100 in accessibility, best practices, and SEO. Existing exclusions of exact confidential figures remain in force.
