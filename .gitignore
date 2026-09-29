@@ -1,0 +1,5 @@
+node_modules/
+.netlify/
+qa-results/
+dist/
+.DS_Store

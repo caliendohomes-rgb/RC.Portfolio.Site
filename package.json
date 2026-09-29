@@ -1,0 +1,22 @@
+{
+  "name": "richard-caliendo-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node --check script.js && node --check scripts/build.mjs && node --check scripts/qa.mjs",
+    "test": "node scripts/qa.mjs",
+    "qa": "node scripts/qa.mjs",
+    "audit": "node scripts/lighthouse.mjs",
+    "preview-assets": "node scripts/generate-social.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "lighthouse": "13.5.0",
+    "playwright": "1.63.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
