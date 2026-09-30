@@ -88,6 +88,12 @@ try {
       source.includes("assets/resume-preview.webp?v=20260929-privacy"),
     "Resume and thumbnail links bypass older browser caches",
   );
+  const headers = await readFile(path.join(publicRoot, "_headers"), "utf8");
+  check(
+    /\/Richard_Caliendo_Resume\.pdf\s+Cache-Control: no-store/.test(headers) &&
+      /\/assets\/resume-preview\.webp\s+Cache-Control: no-store/.test(headers),
+    "Published header rules disable resume and thumbnail browser caching",
+  );
   const viewportSizes = [
     [320, 812],
     [375, 812],

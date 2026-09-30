@@ -43,6 +43,7 @@ Checks cover layout overflow, touch targets, active navigation, keyboard and mob
 - `scripts/generate-resume.py`: editable resume content and ReportLab layout.
 - `scripts/generate-social.mjs`: generates the social-sharing image with Playwright.
 - `robots.txt`, `sitemap.xml`: discoverability.
+- `_headers`: publish-directory response headers for the public resume and its preview.
 
 ## Content integrity
 
@@ -52,7 +53,7 @@ Resume updates were authorized by Richard on September 26, 2026. Do not reintrod
 
 To regenerate the PDF, install ReportLab and run `python scripts/generate-resume.py`. Validate both pages visually and extract the text before publishing. Regenerate `assets/resume-preview.webp` from page one after any resume change (510 x 660 pixels). The PDF is text-searchable; the website provides the semantic HTML presentation.
 
-When replacing a public resume, update the version query on every PDF and thumbnail URL in `index.html`; the current Netlify headers also prevent browser caching of those two assets.
+When replacing a public resume, update the version query on every PDF and thumbnail URL in `index.html`; `_headers` is copied into `dist` so Netlify does not browser-cache those two assets.
 
 ## Netlify
 
