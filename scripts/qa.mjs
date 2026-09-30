@@ -80,7 +80,7 @@ try {
     "Portal progression describes the path to GA without a target date",
   );
   const resumeUrls = source.match(
-    /(?:href|data)="Richard_Caliendo_Resume\.pdf[^"]*"/g,
+    /(?:href|data)="Richard_Caliendo_Resume_2026\.pdf[^"]*"/g,
   ) || [];
   check(
     resumeUrls.length === 6 &&
@@ -90,7 +90,7 @@ try {
   );
   const headers = await readFile(path.join(publicRoot, "_headers"), "utf8");
   check(
-    /\/Richard_Caliendo_Resume\.pdf\s+Cache-Control: no-store/.test(headers) &&
+    /\/Richard_Caliendo_Resume_2026\.pdf\s+Cache-Control: no-store/.test(headers) &&
       /\/assets\/resume-preview\.webp\s+Cache-Control: no-store/.test(headers),
     "Published header rules disable resume and thumbnail browser caching",
   );
@@ -391,11 +391,11 @@ try {
   const download = page.waitForEvent("download");
   await page.locator("a[download]").click();
   check(
-    (await download).suggestedFilename() === "Richard_Caliendo_Resume.pdf",
+    (await download).suggestedFilename() === "Richard_Caliendo_Resume_2026.pdf",
     "Resume download works",
   );
   const pdf = await page.request.get(
-    new URL("Richard_Caliendo_Resume.pdf", base).href,
+    new URL("Richard_Caliendo_Resume_2026.pdf", base).href,
   );
   check(
     pdf.ok() && (await pdf.body()).subarray(0, 5).toString() === "%PDF-",

@@ -37,7 +37,7 @@ Checks cover layout overflow, touch targets, active navigation, keyboard and mob
 - `styles.css`: design tokens, graphite/white surfaces, constrained content rails, responsive layouts, focus, print, and reduced-motion styles.
 - `script.js`: mobile navigation, active section, reading progress, brief entrance effects, and legacy deep links.
 - `assets/`: self-hosted Manrope font, licensed Lucide icons, favicon, social preview, and actual resume thumbnail. Third-party licenses are included.
-- `Richard_Caliendo_Resume.pdf`: public two-page resume updated from the approved portfolio facts.
+- `Richard_Caliendo_Resume_2026.pdf`: public two-page resume updated from the approved portfolio facts.
 - `scripts/build.mjs`: copies the public-file allowlist to `dist`. Development tools and QA reports are excluded.
 - `scripts/qa.mjs`, `scripts/lighthouse.mjs`: repeatable QA.
 - `scripts/generate-resume.py`: editable resume content and ReportLab layout.

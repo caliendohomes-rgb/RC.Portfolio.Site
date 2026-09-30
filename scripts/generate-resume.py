@@ -96,6 +96,6 @@ def footer(canvas, doc):
     canvas.drawRightString(570, 23, f'{doc.page} / 2')
     canvas.restoreState()
 
-doc = SimpleDocTemplate(str(ROOT / 'Richard_Caliendo_Resume.pdf'), pagesize=(612, 792), rightMargin=42, leftMargin=42, topMargin=36, bottomMargin=48, title='Richard Caliendo | Technical Program Leadership', author='Richard Caliendo', subject='SaaS transformation, AI enablement, and Product & Engineering execution')
+doc = SimpleDocTemplate(str(ROOT / 'Richard_Caliendo_Resume_2026.pdf'), pagesize=(612, 792), rightMargin=42, leftMargin=42, topMargin=36, bottomMargin=48, title='Richard Caliendo | Technical Program Leadership', author='Richard Caliendo', subject='SaaS transformation, AI enablement, and Product & Engineering execution')
 doc.build(story, onFirstPage=footer, onLaterPages=footer)
 print('Generated public resume from approved portfolio facts.')
