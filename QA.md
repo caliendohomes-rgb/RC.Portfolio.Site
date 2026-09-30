@@ -50,4 +50,4 @@ Raised primary reading copy to at least 14px and visible supporting text to at l
 
 The release progression keeps only the alpha and June early-access milestones. The subsequent stage is a non-dated path to GA with broad release-readiness language. Removed internal process detail from the site and public PDF, regenerated the PDF thumbnail, and checked extracted PDF text for disclosure regressions. The updated site passed 112/112 browser checks across nine viewport widths; the expanded progression was visually inspected at mobile, tablet, and desktop widths.
 
-The public PDF and thumbnail URLs carry a new version query so previously cached copies are not reused. Netlify now sends `Cache-Control: no-store` for both assets; verify these response headers after deployment. The versioned build passed 113/113 browser checks.
+The public PDF and thumbnail URLs carry a new version query so previously cached copies are not reused. A publish-directory `_headers` file declares `Cache-Control: no-store` for both assets; verify these response headers after deployment. The updated build passed 114/114 browser checks.

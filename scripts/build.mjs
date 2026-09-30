@@ -11,6 +11,7 @@ const files = [
   "Richard_Caliendo_Resume.pdf",
   "robots.txt",
   "sitemap.xml",
+  "_headers",
 ];
 await mkdir(output, { recursive: true });
 for (const file of files)
