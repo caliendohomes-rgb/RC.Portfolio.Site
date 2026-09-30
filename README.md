@@ -46,7 +46,7 @@ Checks cover layout overflow, touch targets, active navigation, keyboard and mob
 
 ## Content integrity
 
-The approved portfolio copy and Richard's explicit corrections govern titles, dates, program scope, and disclosure. Preserve the Staff TPM title and the separate historical Training & Development roles. Revenue remains described as targeted multi-million-dollar impact; confidential figures and precise productivity percentages stay excluded. Portal releases are alpha and early access, with GA in progress. Cloud and regulated-market readiness are objectives, not completed certifications or personal engineering claims.
+The approved portfolio copy and Richard's explicit corrections govern titles, dates, program scope, and disclosure. Preserve the Staff TPM title and the separate historical Training & Development roles. Revenue remains described as targeted multi-million-dollar impact; confidential figures and precise productivity percentages stay excluded. Portal releases are alpha and early access; the path to GA is described without a target date or internal process details. Cloud and regulated-market readiness are objectives, not completed certifications or personal engineering claims.
 
 Resume updates were authorized by Richard on September 26, 2026. Do not reintroduce figures or historical titles from the superseded PDF.
 

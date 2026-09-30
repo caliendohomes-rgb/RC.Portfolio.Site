@@ -28,7 +28,7 @@ Reviewed mobile, tablet, desktop, and ultrawide screenshots, plus the case studi
 
 ## Content boundaries
 
-Preserved official historical titles and dates. Kept revenue targets masked and distinguished them from realized revenue. The Portal remains alpha/early access with GA in progress. Migration, cloud, cost, and regulated-market items remain objectives where appropriate. Did not introduce ARR claims, exact productivity percentages, engineering ownership, certifications, or a Chief of Staff title.
+Preserved official historical titles and dates. Kept revenue targets masked and distinguished them from realized revenue. The Portal remains alpha/early access, with the path to GA described broadly. Migration, cloud, cost, and regulated-market items remain objectives where appropriate. Did not introduce ARR claims, exact productivity percentages, engineering ownership, certifications, or a Chief of Staff title.
 
 Richard explicitly authorized updating the older PDF using approved facts. The replacement corrects the previous title/date mismatches and excluded disclosures.
 
@@ -45,3 +45,7 @@ Added a supporting engineering onboarding and enablement example to the operatin
 ## Readability and navigation pass (2026-09-29)
 
 Raised primary reading copy to at least 14px and visible supporting text to at least 12px at all nine tested widths, enlarged navigation, reduced section gaps, widened the desktop layout, and added direct Approach and Capabilities navigation. The menu now collapses below 900px. Browser QA passed 110/110 checks, including mobile/tablet menu focus, a visible close icon, overflow, accessibility, and text-size regressions. The final mobile Lighthouse run scored 97 performance and 100 in accessibility, best practices, and SEO. Mobile, tablet, and desktop viewport screenshots were reviewed. The static site needs HTTP serving for SVG masks to render in Chromium; direct `file://` screenshots were not used for final visual review.
+
+## Portal disclosure update (2026-09-29)
+
+The release progression keeps only the alpha and June early-access milestones. The subsequent stage is a non-dated path to GA with broad release-readiness language. Removed internal process detail from the site and public PDF, regenerated the PDF thumbnail, and checked extracted PDF text for disclosure regressions. The updated site passed 112/112 browser checks across nine viewport widths; the expanded progression was visually inspected at mobile, tablet, and desktop widths.

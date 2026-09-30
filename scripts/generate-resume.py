@@ -55,7 +55,7 @@ add('Led adoption and enablement for 1,500+ engineers and product leaders. Conso
 add('Revenue &amp; portfolio execution', 'role')
 add('Program-managed an H1 strategic initiatives portfolio targeting multi-million-dollar FY26 revenue impact across churn reduction, evergreen, and customer reactivation. Partnered with Marketing leadership on customer-centered positioning and with Boston Consulting Group and executives on Backup portfolio analysis, repositioning, and pricing, translating recommendations into roadmap, GTM, and delivery execution.')
 add('Platform release governance', 'role')
-add('Drove Unified Cyber Resilience Portal execution through H1 2026 alpha and June 2026 early access. Governing the path to GA as the inaugural product in the pilot NPI program. GA is a Q4 objective and remains in progress.', 'small')
+add('Drove Unified Cyber Resilience Portal execution through H1 2026 alpha and June 2026 early access. Continues to coordinate delivery and release readiness on the path to general availability.', 'small')
 
 story.append(PageBreak())
 add('RICHARD CALIENDO', 'role')
@@ -78,7 +78,7 @@ role('Program Specialist', 'New York State Office of Mental Health (Research Fou
     'Designed training for 55 provider agencies launching a statewide FEMA Crisis Counseling Program. Served as SME to the NYS Psychiatric Institute and Center for Practice Innovations; co-authored quarterly reports to NYS and FEMA.'
 ])
 add('OPERATING CAPABILITIES &amp; TOOLS', 'label')
-add('<b>Program systems:</b> Jira, Jira Plans, Confluence, Asana, Atlassian Rovo, Agile / Scrum, SAFe, dependency mapping, release management, NPI lifecycle governance, portfolio dashboards.', 'small')
+add('<b>Program systems:</b> Jira, Jira Plans, Confluence, Asana, Atlassian Rovo, Agile / Scrum, SAFe, dependency mapping, release management, portfolio dashboards.', 'small')
 add('<b>AI enablement:</b> Claude, Claude Code, Codex, GitHub Copilot, Cursor, Lovable, M365 Copilot, MCP, AI governance, prompt and workflow design.', 'small')
 add('<b>Analytics, automation &amp; collaboration:</b> Power BI, Excel, Power Automate, Power Apps, SharePoint, Microsoft 365, Zapier.', 'small')
 add('<b>Program domains:</b> Backup &amp; BCDR, SaaS portfolio consolidation, object-storage data-plane migration, public-cloud migration, Microsoft Azure, FedRAMP readiness. Technical domains describe program scope, not engineering ownership or certifications.', 'small')
