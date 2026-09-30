@@ -938,11 +938,28 @@ details[open] > summary .icon-plus {
   display: grid;
   align-content: start;
   gap: 7px;
+  position: relative;
   border-top: 2px solid #94b999;
-  padding-top: 12px;
+  padding-top: 18px;
+}
+.portal-stages li::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 3px var(--paper);
 }
 .portal-stages li:last-child {
   border-color: #abb1a9;
+  border-top-style: dashed;
+}
+.portal-stages li:last-child::before {
+  background: var(--paper);
+  border: 2px solid var(--green);
 }
 .portal-stages span {
   font-size: 13px;
@@ -950,9 +967,6 @@ details[open] > summary .icon-plus {
 }
 .portal-stages strong {
   font-size: 15px;
-}
-.portal-details > p {
-  font-size: 14px;
 }
 
 .approach-section {

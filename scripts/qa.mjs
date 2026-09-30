@@ -64,6 +64,21 @@ try {
     !/32M|majority.?ARR|120M|6\.4M|3\.2M|1\.2M|23%|20%|\u2014/i.test(source),
     "Public HTML preserves confidential-figure exclusions",
   );
+  const resumeSource = await readFile(
+    path.join(root, "scripts/generate-resume.py"),
+    "utf8",
+  );
+  check(
+    !/Q4 objective|\bpilot\b|Product Marketing, Product Finance|stakeholders.{0,30}validat/i.test(
+      source + resumeSource,
+    ),
+    "Public copy and resume source exclude internal GA details",
+  );
+  check(
+    source.includes("Path to GA") &&
+      source.includes("Ongoing refinement and release readiness"),
+    "Portal progression describes the path to GA without a target date",
+  );
   const viewportSizes = [
     [320, 812],
     [375, 812],
