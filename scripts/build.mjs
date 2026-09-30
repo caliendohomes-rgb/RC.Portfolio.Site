@@ -1,4 +1,4 @@
-import { cp, mkdir, readdir, stat } from "node:fs/promises";
+import { cp, mkdir, readdir, rm, stat } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
@@ -8,12 +8,13 @@ const files = [
   "index.html",
   "styles.css",
   "script.js",
-  "Richard_Caliendo_Resume.pdf",
+  "Richard_Caliendo_Resume_2026.pdf",
   "robots.txt",
   "sitemap.xml",
   "_headers",
 ];
 await mkdir(output, { recursive: true });
+await rm(path.join(output, "Richard_Caliendo_Resume.pdf"), { force: true });
 for (const file of files)
   await cp(path.join(root, file), path.join(output, file));
 await cp(path.join(root, "assets"), path.join(output, "assets"), {
