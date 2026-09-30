@@ -79,6 +79,15 @@ try {
       source.includes("Ongoing refinement and release readiness"),
     "Portal progression describes the path to GA without a target date",
   );
+  const resumeUrls = source.match(
+    /(?:href|data)="Richard_Caliendo_Resume\.pdf[^"]*"/g,
+  ) || [];
+  check(
+    resumeUrls.length === 6 &&
+      resumeUrls.every((url) => url.includes("?v=20260929-privacy")) &&
+      source.includes("assets/resume-preview.webp?v=20260929-privacy"),
+    "Resume and thumbnail links bypass older browser caches",
+  );
   const viewportSizes = [
     [320, 812],
     [375, 812],
