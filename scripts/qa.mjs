@@ -60,19 +60,23 @@ const check = (condition, description) => {
 
 try {
   const source = await readFile(path.join(publicRoot, "index.html"), "utf8");
+  const assembled = (
+    await Promise.all(
+      ["site_head.html", "site_body.html", "site_js.html"].map((name) =>
+        readFile(path.join(root, name), "utf8"),
+      ),
+    )
+  ).join("");
+  check(source === assembled, "Published HTML matches the three source fragments");
   check(
-    !/32M|majority.?ARR|120M|6\.4M|3\.2M|1\.2M|23%|20%|\u2014/i.test(source),
+    !/\$|\b\d+(?:\.\d+)?%|\bARR\b|\u2014/i.test(source),
     "Public HTML preserves confidential-figure exclusions",
   );
-  const resumeSource = await readFile(
-    path.join(root, "scripts/generate-resume.py"),
-    "utf8",
-  );
   check(
-    !/Q4 objective|\bpilot\b|Product Marketing, Product Finance|stakeholders.{0,30}validat/i.test(
-      source + resumeSource,
+    !/\bQ[1-4]\b|\bpilot\b|stakeholders.{0,30}validat/i.test(
+      source,
     ),
-    "Public copy and resume source exclude internal GA details",
+    "Public copy excludes internal GA details",
   );
   check(
     source.includes("Path to GA") &&
@@ -80,17 +84,18 @@ try {
     "Portal progression describes the path to GA without a target date",
   );
   const resumeUrls = source.match(
-    /(?:href|data)="Richard_Caliendo_Resume_2026\.pdf[^"]*"/g,
+    /(?:href|data)="Richard_Caliendo_Resume\.pdf[^"]*"/g,
   ) || [];
   check(
     resumeUrls.length === 6 &&
-      resumeUrls.every((url) => url.includes("?v=20260929-privacy")) &&
-      source.includes("assets/resume-preview.webp?v=20260929-privacy"),
+      resumeUrls.every((url) => url.includes("?v=2026-09")) &&
+      source.includes("assets/resume-preview.webp?v=2026-09") &&
+      !source.includes("Richard_Caliendo_Resume_2026.pdf"),
     "Resume and thumbnail links bypass older browser caches",
   );
   const headers = await readFile(path.join(publicRoot, "_headers"), "utf8");
   check(
-    /\/Richard_Caliendo_Resume_2026\.pdf\s+Cache-Control: no-store/.test(headers) &&
+    /\/Richard_Caliendo_Resume\.pdf\s+Cache-Control: no-store/.test(headers) &&
       /\/assets\/resume-preview\.webp\s+Cache-Control: no-store/.test(headers),
     "Published header rules disable resume and thumbnail browser caching",
   );
@@ -258,16 +263,16 @@ try {
   });
   const page = await context.newPage();
   await page.goto(base);
+  const onboardingText = (await page.locator(".onboarding-bridge").textContent()).replace(
+    /\s+/g,
+    " ",
+  );
   check(
     (await page.locator(".onboarding-bridge h3").textContent()).includes(
       "Help new practices take hold",
     ) &&
-      (await page.locator(".onboarding-bridge").textContent())
-        .replace(/\s+/g, " ")
-        .includes("1,500+ engineers and product leaders") &&
-      (await page.locator(".onboarding-bridge").textContent()).includes(
-        "automated Jira workflow",
-      ),
+      onboardingText.includes("1,500+ engineers and product leaders") &&
+      onboardingText.includes("Jira workflow for AI tool provisioning"),
     "Engineering onboarding context and Jira workflow are present",
   );
   check(
@@ -284,6 +289,23 @@ try {
       "Onboarding systems",
     ),
     "Onboarding systems appears as a supporting capability",
+  );
+  const builds = (await page.locator(".onboarding-copy").textContent()).replace(
+    /\s+/g,
+    " ",
+  );
+  check(
+    ["Electron", "React", "llama.cpp", "Jira MCP server", "e-commerce agent", "StandardCraft"].every((term) =>
+      builds.includes(term),
+    ),
+    "Hands-on AI-assisted builds are represented",
+  );
+  const toolkit = await page.locator(".capability-matrix").textContent();
+  check(
+    ["TypeScript", "JavaScript", "React", "Electron", "llama.cpp", "Atlassian Rovo agents", "MCP", "Git and GitHub", "Netlify"].every((term) =>
+      toolkit.includes(term),
+    ),
+    "Toolkit includes the new build and AI tools",
   );
   await page.keyboard.press("Tab");
   check(
@@ -391,16 +413,20 @@ try {
   const download = page.waitForEvent("download");
   await page.locator("a[download]").click();
   check(
-    (await download).suggestedFilename() === "Richard_Caliendo_Resume_2026.pdf",
+    (await download).suggestedFilename() === "Richard_Caliendo_Resume.pdf",
     "Resume download works",
   );
   const pdf = await page.request.get(
-    new URL("Richard_Caliendo_Resume_2026.pdf", base).href,
+    new URL("Richard_Caliendo_Resume.pdf", base).href,
   );
   check(
     pdf.ok() && (await pdf.body()).subarray(0, 5).toString() === "%PDF-",
     "Resume URL returns an actual PDF",
   );
+  const oldPdf = await page.request.get(
+    new URL("Richard_Caliendo_Resume_2026.pdf", base).href,
+  );
+  check(oldPdf.status() === 404, "Superseded resume is not published");
   await page.locator(".resume-embed summary").click();
   check(
     await page.locator(".resume-embed object").isVisible(),
