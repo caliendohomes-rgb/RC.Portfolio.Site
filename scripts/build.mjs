@@ -1,20 +1,36 @@
-import { cp, mkdir, readdir, rm, stat } from "node:fs/promises";
+import { cp, mkdir, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const output = path.join(root, "dist");
 const files = [
-  "index.html",
   "styles.css",
   "script.js",
-  "Richard_Caliendo_Resume_2026.pdf",
+  "Richard_Caliendo_Resume.pdf",
   "robots.txt",
   "sitemap.xml",
   "_headers",
 ];
 await mkdir(output, { recursive: true });
-await rm(path.join(output, "Richard_Caliendo_Resume.pdf"), { force: true });
+const fragments = await Promise.all(
+  ["site_head.html", "site_body.html", "site_js.html"].map((name) =>
+    readFile(path.join(root, name), "utf8"),
+  ),
+);
+const html = fragments.join("");
+const index = path.join(root, "index.html");
+if ((await readFile(index, "utf8")).replace(/\r\n/g, "\n") !== html)
+  await writeFile(index, html);
+await writeFile(path.join(output, "index.html"), html);
+for (const entry of await readdir(output)) {
+  if (
+    entry.startsWith("Richard_Caliendo_Resume") &&
+    entry.endsWith(".pdf") &&
+    entry !== "Richard_Caliendo_Resume.pdf"
+  )
+    await rm(path.join(output, entry));
+}
 for (const file of files)
   await cp(path.join(root, file), path.join(output, file));
 await cp(path.join(root, "assets"), path.join(output, "assets"), {

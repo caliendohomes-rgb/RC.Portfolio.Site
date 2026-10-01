@@ -1017,6 +1017,9 @@ details[open] > summary .icon-plus {
   font-size: 16px;
   line-height: 1.7;
 }
+.onboarding-copy p + p {
+  margin-top: 14px;
+}
 .onboarding-signals {
   display: flex;
   flex-wrap: wrap;

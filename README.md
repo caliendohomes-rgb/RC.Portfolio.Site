@@ -4,7 +4,7 @@ Static source for [richardecaliendo.com](https://richardecaliendo.com), deployed
 
 ## Local preview
 
-Open `index.html` directly for a quick preview. For HTTP behavior and audits, use Node 22+ and pnpm:
+Run the build to assemble `index.html` from the three source fragments. For HTTP behavior and audits, use Node 22+ and pnpm:
 
 ```powershell
 pnpm install --frozen-lockfile
@@ -33,27 +33,29 @@ Checks cover layout overflow, touch targets, active navigation, keyboard and mob
 
 ## Source map
 
-- `index.html`: all public copy, semantic sections, SEO metadata, Person structured data, and native details/summary disclosures.
+- `site_head.html`, `site_body.html`, `site_js.html`: source fragments for the document head, page body, and script/footer. `index.html` is assembled from them during the build.
+- `index.html`: generated public HTML, committed for direct preview and search indexing.
 - `styles.css`: design tokens, graphite/white surfaces, constrained content rails, responsive layouts, focus, print, and reduced-motion styles.
 - `script.js`: mobile navigation, active section, reading progress, brief entrance effects, and legacy deep links.
 - `assets/`: self-hosted Manrope font, licensed Lucide icons, favicon, social preview, and actual resume thumbnail. Third-party licenses are included.
-- `Richard_Caliendo_Resume_2026.pdf`: public two-page resume updated from the approved portfolio facts.
-- `scripts/build.mjs`: copies the public-file allowlist to `dist`. Development tools and QA reports are excluded.
+- `Richard_Caliendo_Resume.pdf`: public-safe two-page copy of Richard's supplied resume.
+- `scripts/build.mjs`: assembles the HTML and copies the public-file allowlist to `dist`. It removes superseded resume PDFs from `dist`.
 - `scripts/qa.mjs`, `scripts/lighthouse.mjs`: repeatable QA.
-- `scripts/generate-resume.py`: editable resume content and ReportLab layout.
+- `scripts/create-public-resume.py`: removes previously withheld details from Richard's supplied PDF while retaining its two-page layout. `scripts/fonts/` holds the matching EB Garamond fonts and license.
+- `scripts/generate-resume.py`: earlier portfolio resume generator, not used for the current public PDF.
 - `scripts/generate-social.mjs`: generates the social-sharing image with Playwright.
 - `robots.txt`, `sitemap.xml`: discoverability.
 - `_headers`: publish-directory response headers for the public resume and its preview.
 
 ## Content integrity
 
-The approved portfolio copy and Richard's explicit corrections govern titles, dates, program scope, and disclosure. Preserve the Staff TPM title and the separate historical Training & Development roles. Revenue remains described as targeted multi-million-dollar impact; confidential figures and precise productivity percentages stay excluded. Portal releases are alpha and early access; the path to GA is described without a target date or internal process details. Cloud and regulated-market readiness are objectives, not completed certifications or personal engineering claims.
+The approved portfolio copy and Richard's explicit corrections govern titles, dates, program scope, and disclosure. Preserve the Staff TPM title and the separate historical Training & Development roles. Revenue remains described as targeted multi-million-dollar impact; confidential figures and precise productivity percentages stay excluded. Portal releases are alpha and early access; the path to GA is described without a target date or internal process details. Cloud and regulated-market readiness are objectives, not completed certifications or personal engineering claims. Hands-on builds are framed as AI-assisted work, not software engineering employment.
 
-Resume updates were authorized by Richard on September 26, 2026. Do not reintroduce figures or historical titles from the superseded PDF.
+Richard supplied a new resume on September 29, 2026 and requested a public-safe copy before publishing. The unredacted source stays outside the repository. Do not publish it or reintroduce its withheld figures and GA process details.
 
-To regenerate the PDF, install ReportLab and run `python scripts/generate-resume.py`. Validate both pages visually and extract the text before publishing. Regenerate `assets/resume-preview.webp` from page one after any resume change (510 x 660 pixels). The PDF is text-searchable; the website provides the semantic HTML presentation.
+To regenerate the public PDF from Richard's private source, install PyMuPDF and run `python scripts/create-public-resume.py PATH_TO_PRIVATE_SOURCE.pdf`. Validate both pages visually and extract the text before publishing. Regenerate `assets/resume-preview.webp` from page one after any resume change (510 x 660 pixels). The PDF is text-searchable; the website provides the semantic HTML presentation.
 
-When replacing a public resume, update the version query on every PDF and thumbnail URL in `index.html`; `_headers` is copied into `dist` so Netlify does not browser-cache those two assets.
+When replacing a public resume, update the version query on every PDF and thumbnail URL in `site_body.html`; `_headers` is copied into `dist` so Netlify does not browser-cache those two assets.
 
 ## Netlify
 
