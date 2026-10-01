@@ -63,7 +63,9 @@ try {
   const assembled = (
     await Promise.all(
       ["site_head.html", "site_body.html", "site_js.html"].map((name) =>
-        readFile(path.join(root, name), "utf8"),
+        readFile(path.join(root, name), "utf8").then((part) =>
+          part.replace(/\r\n/g, "\n"),
+        ),
       ),
     )
   ).join("");

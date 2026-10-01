@@ -55,7 +55,7 @@ Richard supplied a new resume on September 29, 2026 and requested a public-safe 
 
 To regenerate the public PDF from Richard's private source, install PyMuPDF and run `python scripts/create-public-resume.py PATH_TO_PRIVATE_SOURCE.pdf`. Validate both pages visually and extract the text before publishing. Regenerate `assets/resume-preview.webp` from page one after any resume change (510 x 660 pixels). The PDF is text-searchable; the website provides the semantic HTML presentation.
 
-When replacing a public resume, update the version query on every PDF and thumbnail URL in `site_body.html`; `_headers` is copied into `dist` so Netlify does not browser-cache those two assets.
+When replacing a public resume, update the version query on every PDF and thumbnail URL in `site_body.html`. The `_headers` file requests `no-store`, but the live Netlify site currently returns a one-hour cache header for the PDF path. The version query is necessary to avoid an older browser copy. The thumbnail currently returns `no-store`.
 
 ## Netlify
 
